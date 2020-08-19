@@ -1,3 +1,7 @@
+#define DEFAULT 0
+#define LOWER 1
+#define RAISE 2
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
@@ -7,15 +11,43 @@
 
 		default_layer {
 // ---------------------------------------------------------------------------------------------------------------------------------
-// |  ESC  |  Q  |  W  |  E   |  R   |  T   |   |  Y   |  U    |  I    |  O   |   P   |   \  |
-// |  TAB  |  A  |  S  |  D   |  F   |  G   |   |  H   |  J    |  K    |  L   |   ;   |   '  |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |   |  N   |  M    |  ,    |  .   |   /   | CTRL |
-//                     | GUI  | DEL  | RET  |   | TAB  | BSPC  | R-ALT |
+// |  TAB  |  Q  |  W  |  E   |  R   |  T   |   	|  Y   |  U   |  I    |  O   |   P   | BKSP |
+// |  CTRL |  A  |  S  |  D   |  F   |  G   |   	|  H   |  J   |  K    |  L   |   ;   |   '  |
+// | SHIFT |  Z  |  X  |  C   |  V   |  B   |   	|  N   |  M   |  ,    |  .   |   /   | CTRL |
+//                     | GUI  |*lower| SPC  |   	| RET  |*raise| R-ALT |
 			bindings = <
-	&kp ESC  &kp Q &kp W &kp E &kp R &kp T  &kp Y &kp U  &kp I    &kp O   &kp P    &kp BSLH
-	&kp TAB  &kp A &kp S &kp D &kp F &kp G  &kp H &kp J  &kp K    &kp L   &kp SCLN &kp QUOT
-	&kp LSFT &kp Z &kp X &kp C &kp V &kp B  &kp N &kp M  &kp CMMA &kp DOT &kp FSLH &kp RCTL
-	              &kp LGUI &kp DEL &kp RET  &kp TAB &kp BKSP &kp RALT
+	&kp TAB   &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U  &kp I    &kp O   &kp P    &kp BKSP
+	&kp LCTRL &kp A &kp S &kp D &kp F &kp G     &kp H &kp J  &kp K    &kp L   &kp SCLN &kp QUOT
+	&kp LSFT  &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M  &kp CMMA &kp DOT &kp FSLH &kp RCTL
+	             &kp LGUI &mo LOWER &kp SPC     &kp RET &mo RAISE &kp RALT
+			>;
+		};
+
+		lower_layer {
+// ---------------------------------------------------------------------------------------------------------------------------------
+// |  ESC  |  1  |  2  |  3   |  4   |  5   |   	|  6   |  7    |  8    |  9   |   0   | BKSP |
+// |  CTRL |     |     |      |      |      |   	| LEFT | DOWN  |  UP   |RIGHT |       |      |
+// | SHIFT |     |     |      |      |      |   	|      |       |       |      |       |      |
+//                     | GUI  |      | SPC  |   	| RET  |       | R-ALT |
+			bindings = <
+	&kp TAB   &kp NUM_1 &kp NUM_2 &kp NUM_3 &kp NUM_4 &kp NUM_5        &kp NUM_6 &kp NUM_7 &kp NUM_8   &kp NUM_9  &kp NUM_0 &kp BKSP
+	&kp LCTRL &trans    &trans    &trans    &trans    &trans           &kp LARW  &kp DARW  &kp UARW    &kp RARW   &trans    &trans
+	&kp LSFT  &trans    &trans    &trans    &trans    &trans           &trans    &trans    &trans      &trans     &trans    &trans
+	                                  &kp LGUI &trans &kp SPC          &kp RET &trans &kp RALT
+			>;
+		};
+
+		upper_layer {
+// ---------------------------------------------------------------------------------------------------------------------------------
+// |  TAB  |  !  |  @  |  #   |  $   |  %   |   	|  ^   |  &    |  *    |  (   |   )   | BKSP |
+// |  CTRL |     |     |      |      |      |   	|  -   |  =    |  {    |  }   |   |   |   `  |
+// | SHIFT |     |     |      |      |      |   	|  _   |  +    |  [    |  ]   |   \   |   ~  |
+//                     | GUI  |      | SPC  |   	| RET  |       | R-ALT |
+			bindings = <
+	&kp TAB   &kp Q &kp W &kp E &kp R &kp T  &kp Y &kp U  &kp I    &kp O   &kp P    &kp BKSP
+	&kp LCTRL &kp A &kp S &kp D &kp F &kp G  &kp H &kp J  &kp K    &kp L   &kp SCLN &kp QUOT
+	&kp LSFT  &kp Z &kp X &kp C &kp V &kp B  &kp N &kp M  &kp CMMA &kp DOT &kp FSLH &kp RCTL
+	              &kp LGUI &trans &kp SPC  &kp RET &trans &kp RALT
 			>;
 		};
 	};
